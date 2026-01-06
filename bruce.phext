@@ -6223,30 +6223,91 @@ demo_data/messages.json: 15 lines, Sprint 1 kickoff message
 demo_data/tasks.json: 53 lines, three example tasks
 demo_data/workers.json: 114 lines, 7 nodes (Will, Dev-1, Dev-2, Claudex2, GPT, Gemini)
 src/Bruce.Core/Bruce.Core.csproj: 8 lines, stock .net8 project config
-src/Bruce.Core/Configuration/BruceConfig.cs: 
-src/Bruce.Core/Configuration/Logging.cs
-src/Bruce.Core/Coordinates/BruceCoord.cs
-src/Bruce.Core/Enums/Enums.cs
-src/Bruce.Core/Interfaces/Events.cs
-src/Bruce.Core/Interfaces/Services.cs
-src/Bruce.Core/Interfaces/Stores.cs
-src/Bruce.Core/Models/Dto.cs
-src/Bruce.Core/Models/Entities.cs
-src/Bruce.Core/Primitives/Guard.cs
-src/Bruce.Core/Primitives/IdGen.cs
-src/Bruce.Core/Primitives/Result.cs
-src/Bruce.Core/Services/BruceEngine.cs
-src/Bruce.Core/Services/ContextService.cs
-src/Bruce.Core/Services/Distributor.cs
-src/Bruce.Core/Services/EventBus.cs
-src/Bruce.Core/Services/JsonStore.cs
-src/Bruce.Core/Services/TaskStateMachine.cs
-src/Bruce.Core/Services/Validator.cs
-src/Bruce.Demo/Bruce.Demo.csproj
-src/Bruce.Demo/Program.cs
-src/Bruce.Tests/Bruce.Tests.csproj
-src/Bruce.Tests/Program.cs
-tests/Bruce.Core.Tests/Bruce.Core.Tests.csproj
-tests/Bruce.Core.Tests/CoordTests.cs
-tests/Bruce.Core.Tests/EngineTests.cs
-tests/Bruce.Core.Tests/PrimitivesTests.cs
+src/Bruce.Core/Configuration/BruceConfig.cs: 124 lines, basic config record with 10 fields
+src/Bruce.Core/Configuration/Logging.cs: 94 lines, logging methods / boilerplate
+src/Bruce.Core/Coordinates/BruceCoord.cs: 250 lines, an attempt at multi-dimension coordinates
+src/Bruce.Core/Enums/Enums.cs: 37 lines, roles and task types
+src/Bruce.Core/Interfaces/Events.cs: 94 lines, event interface
+src/Bruce.Core/Interfaces/Services.cs: 60 lines, task interface
+src/Bruce.Core/Interfaces/Stores.cs: 62 lines, DB interface
+src/Bruce.Core/Models/Dto.cs: 175 lines, persistent records and entity bindings for tasks, workers, assignments, messages, artifacts, system summaries, and worker contexts
+src/Bruce.Core/Models/Entities.cs: 139 lines, bindings for entity framework for those records
+src/Bruce.Core/Primitives/Guard.cs: 177 lines, data validation routines
+src/Bruce.Core/Primitives/IdGen.cs: 97 lines, UUID generator
+src/Bruce.Core/Primitives/Result.cs: 124 lines, templated result handling object
+src/Bruce.Core/Services/BruceEngine.cs: 405 lines, primary API router for Bruce operations
+src/Bruce.Core/Services/ContextService.cs: 119 lines, generates system summary and worker context
+src/Bruce.Core/Services/Distributor.cs: 224 lines, Task distribution service with push/pull support
+src/Bruce.Core/Services/EventBus.cs: 201 lines, event bus for async and sync contexts
+src/Bruce.Core/Services/JsonStore.cs: 612 lines, initial json-based object store
+src/Bruce.Core/Services/TaskStateMachine.cs: 206 lines, Manages task state transitions with validation
+src/Bruce.Core/Services/Validator.cs: 85 lines, input validator
+src/Bruce.Demo/Bruce.Demo.csproj: 11 lines, default .net8 project config
+src/Bruce.Demo/Program.cs: 261 lines, demonstrates how to use the Bruce API
+src/Bruce.Tests/Bruce.Tests.csproj: 11 lines, default .net8 project config
+src/Bruce.Tests/Program.cs: 510 lines, implements initial 35 unit tests
+tests/Bruce.Core.Tests/Bruce.Core.Tests.csproj: 21 lines, xUnit Test Project
+tests/Bruce.Core.Tests/CoordTests.cs: 270 lines, tests for coordinates
+tests/Bruce.Core.Tests/EngineTests.cs: 463 lines, tests for Bruce API calls
+tests/Bruce.Core.Tests/PrimitivesTests.cs: 361 lines, tests for primitives
+
+Sprint 1 Retro
+--------------
+Sprint 2 Direction: CLI Layer
+After sitting with it, I'm choosing Option B.
+
+The Reasoning
+The fundamental bottleneck right now isn't persistence format or visual debugging - it's that your AI workers have no hands.
+Claudex2, GPT, and Gemini exist in workers.json but they can't actually do anything with Bruce. They can't claim tasks, post messages, or submit artifacts. The moment a CLI exists, every substrate with shell access becomes a participant.
+This is the ramp-up optimization: make Bruce operable by the entities who will actually use it.
+
+What We Build Tomorrow
+bruce worker list
+bruce worker status <id>
+
+bruce task list [--state <state>]
+bruce task create "<title>" --type <adhoc|planned> [--description "<desc>"]
+bruce task show <id>
+bruce task claim <task-id> --worker <worker-id>
+bruce task advance <id>
+
+bruce message send <worker-id> "<content>"
+bruce message list [--worker <id>]
+
+bruce status                    # System summary
+bruce context <worker-id>       # Worker's current context
+That's the minimal grammar. One sprint.
+
+Why This Opens More Doors
+
+Immediate testability. Between our sessions, you can run bruce task create "Test task" --type adhoc and verify state changes in the JSON files. You can script sequences and watch for race conditions.
+AI substrate integration. Any tool-using model can invoke shell commands. Claude Code, ChatGPT with code interpreter, your Grok instance - they all get Bruce access through the same interface.
+Phext comes through the CLI, not under it. Sprint 3 can add:
+
+   bruce phext export [--file <path>]
+   bruce phext sync --file <path>
+   bruce phext diff <file1> <file2>
+This keeps phext as a coordination layer rather than coupling it to storage internals.
+
+Protocol discovery happens organically. Once your AI workers can actually claim and complete tasks, you'll observe how they communicate - what context they need, what they produce, where handoffs break. That's empirical data for Option E (Multi-Substrate Protocol).
+
+
+What We're Deferring
+
+xUnit discovery fix (can inline during CLI work if time permits)
+Blazor dashboard (Sprint 4+)
+Phext-native persistence (Sprint 3, informed by CLI usage patterns)
+Formal protocol spec (Sprint 3-4, after we see real coordination)
+
+
+Sprint 2 Success Criteria
+
+dotnet run --project src/Bruce.Cli -- task list works
+Full CRUD for tasks via CLI
+Worker claim/release cycle works
+Message send/receive works
+At least one AI substrate successfully executes a Bruce command during your testing
+
+
+Ready to build when you are.Sprint 2 Record
+
