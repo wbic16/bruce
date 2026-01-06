@@ -1,0 +1,114 @@
+{
+  "27ef47c9": {
+    "id": "27ef47c9",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 1
+    },
+    "name": "Will",
+    "type": 0,
+    "role": 1,
+    "substrate": null,
+    "viewCoord": null,
+    "maxCapacity": 24,
+    "maxAdhoc": 24,
+    "maxPlanned": 24
+  },
+  "84774fb8": {
+    "id": "84774fb8",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 2
+    },
+    "name": "Dev-1",
+    "type": 0,
+    "role": 0,
+    "substrate": null,
+    "viewCoord": null,
+    "maxCapacity": 4,
+    "maxAdhoc": 2,
+    "maxPlanned": 2
+  },
+  "51595466": {
+    "id": "51595466",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 3
+    },
+    "name": "Dev-2",
+    "type": 0,
+    "role": 0,
+    "substrate": null,
+    "viewCoord": null,
+    "maxCapacity": 4,
+    "maxAdhoc": 2,
+    "maxPlanned": 2
+  },
+  "9d8fe503": {
+    "id": "9d8fe503",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 4
+    },
+    "name": "Claude-1",
+    "type": 1,
+    "role": 0,
+    "substrate": "claude",
+    "viewCoord": null,
+    "maxCapacity": 4,
+    "maxAdhoc": 2,
+    "maxPlanned": 2
+  },
+  "a372f867": {
+    "id": "a372f867",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 5
+    },
+    "name": "Claude-2",
+    "type": 1,
+    "role": 0,
+    "substrate": "claude",
+    "viewCoord": null,
+    "maxCapacity": 4,
+    "maxAdhoc": 2,
+    "maxPlanned": 2
+  },
+  "e6fb2ab8": {
+    "id": "e6fb2ab8",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 6
+    },
+    "name": "GPT-1",
+    "type": 1,
+    "role": 0,
+    "substrate": "gpt",
+    "viewCoord": null,
+    "maxCapacity": 4,
+    "maxAdhoc": 2,
+    "maxPlanned": 2
+  },
+  "73984fc9": {
+    "id": "73984fc9",
+    "coord": {
+      "entityType": 1,
+      "major": 1,
+      "minor": 7
+    },
+    "name": "Gemini-1",
+    "type": 1,
+    "role": 0,
+    "substrate": "gemini",
+    "viewCoord": null,
+    "maxCapacity": 4,
+    "maxAdhoc": 2,
+    "maxPlanned": 2
+  }
+}

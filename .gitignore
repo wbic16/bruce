@@ -1,0 +1,7 @@
+.vs/*
+src/Bruce.Core/bin/*
+src/Bruce.Core/obj/*
+src/Bruce.Demo/bin/*
+src/Bruce.Demo/obj/*
+src/Bruce.Tests/bin/*
+src/Bruce.Tests/obj/*

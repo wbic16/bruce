@@ -1,0 +1,53 @@
+{
+  "ffa3f35025f2": {
+    "id": "ffa3f35025f2",
+    "coord": {
+      "entityType": 2,
+      "major": 1,
+      "minor": 1
+    },
+    "title": "Fix login bug",
+    "description": "Users report login failing intermittently",
+    "source": 1,
+    "sourceRef": "TEAMS-1234",
+    "state": 2,
+    "type": 0,
+    "assignedTo": "9d8fe503",
+    "created": "2026-01-05T19:52:14.6998296Z",
+    "updated": "2026-01-05T19:52:14.7489039Z"
+  },
+  "5303b146969b": {
+    "id": "5303b146969b",
+    "coord": {
+      "entityType": 2,
+      "major": 1,
+      "minor": 2
+    },
+    "title": "Implement API caching",
+    "description": "Add Redis caching layer to API endpoints",
+    "source": 0,
+    "sourceRef": null,
+    "state": 2,
+    "type": 1,
+    "assignedTo": "9d8fe503",
+    "created": "2026-01-05T19:52:14.7322507Z",
+    "updated": "2026-01-05T19:52:14.7660966Z"
+  },
+  "94edd51aa477": {
+    "id": "94edd51aa477",
+    "coord": {
+      "entityType": 2,
+      "major": 1,
+      "minor": 3
+    },
+    "title": "Review PR #567",
+    "description": "Code review for new feature branch",
+    "source": 3,
+    "sourceRef": "change/567",
+    "state": 1,
+    "type": 0,
+    "assignedTo": null,
+    "created": "2026-01-05T19:52:14.7328249Z",
+    "updated": "2026-01-05T19:52:14.7449415Z"
+  }
+}
