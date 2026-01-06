@@ -1,16 +1,20 @@
-{
-  "ffa3f35025f2": {
-    "taskId": "ffa3f35025f2",
-    "workerId": "9d8fe503",
-    "pushedAt": "2026-01-05T19:52:14.7493606Z",
-    "claimedAt": null,
-    "completedAt": null
+[
+  {
+    "id": "asn_will_sprint2",
+    "taskId": "tsk_sprint2_cli",
+    "workerId": "wrk_will",
+    "assignedAt": "2026-01-06T00:00:00Z"
   },
-  "5303b146969b": {
-    "taskId": "5303b146969b",
-    "workerId": "9d8fe503",
-    "pushedAt": null,
-    "claimedAt": "2026-01-05T19:52:14.7664587Z",
-    "completedAt": null
+  {
+    "id": "asn_claudex2_docs",
+    "taskId": "tsk_cli_docs",
+    "workerId": "wrk_claudex2",
+    "assignedAt": "2026-01-06T00:00:00Z"
+  },
+  {
+    "id": "asn_695d1b3e_502c",
+    "taskId": "tsk_test_ai_substrate",
+    "workerId": "wrk_claudex2",
+    "assignedAt": "2026-01-06T14:25:02.5248058Z"
   }
-}
+]

@@ -1,15 +1,29 @@
-{
-  "4222769d826e": {
-    "id": "4222769d826e",
-    "coord": {
-      "entityType": 4,
-      "major": 1,
-      "minor": 1
-    },
+[
+  {
+    "id": "msg_sprint1_kickoff",
+    "fromWorkerId": "wrk_will",
+    "toWorkerId": "all",
+    "content": "Sprint 1 complete. Bruce.Core library operational. 35 files, 4500 lines. Ready for CLI layer.",
+    "taskId": "tsk_sprint1_cli",
+    "sentAt": "2026-01-05T23:59:00Z",
+    "read": true
+  },
+  {
+    "id": "msg_sprint2_kickoff",
+    "fromWorkerId": "wrk_will",
+    "toWorkerId": "all",
+    "content": "Sprint 2 begins. Focus: CLI layer. Goal: Give AI workers hands to interact with Bruce.",
+    "taskId": "tsk_sprint2_cli",
+    "sentAt": "2026-01-06T00:00:00Z",
+    "read": false
+  },
+  {
+    "id": "msg_695d1b46_f3cf",
+    "fromWorkerId": "wrk_claudex2",
+    "toWorkerId": "wrk_will",
+    "content": "[STATUS] AI substrate integration test in progress",
     "taskId": null,
-    "fromWorkerId": "27ef47c9",
-    "toWorkerId": null,
-    "body": "Sprint 1 kickoff - let\u0027s go!",
-    "timestamp": "2026-01-05T19:52:14.7980092Z"
+    "sentAt": "2026-01-06T14:25:10.7550341Z",
+    "read": false
   }
-}
+]

@@ -5,3 +5,6 @@ src/Bruce.Demo/bin/*
 src/Bruce.Demo/obj/*
 src/Bruce.Tests/bin/*
 src/Bruce.Tests/obj/*
+src/Bruce.Cli/bin/*
+src/Bruce.Cli/obj/*
+src/Bruce.Cli/.vs/*
