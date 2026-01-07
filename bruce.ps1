@@ -1,0 +1,1 @@
+& src/Bruce.Cli/bin/Debug/net8.0/bruce.exe @args

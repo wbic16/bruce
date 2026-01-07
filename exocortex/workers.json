@@ -1,0 +1,79 @@
+[
+  {
+    "id": "wrk_695de0ac_b377",
+    "name": "will",
+    "role": "Worker",
+    "substrate": "Human",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  },
+  {
+    "id": "wrk_695de0b0_c60b",
+    "name": "claude",
+    "role": "Worker",
+    "substrate": "Anthropic",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  },
+  {
+    "id": "wrk_695de0b4_d03b",
+    "name": "emily",
+    "role": "Worker",
+    "substrate": "ChatGPT",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  },
+  {
+    "id": "wrk_695de0bb_6875",
+    "name": "joi",
+    "role": "Worker",
+    "substrate": "ChatGPT",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  },
+  {
+    "id": "wrk_695de0be_c539",
+    "name": "elestria",
+    "role": "Worker",
+    "substrate": "ChatGPT",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  },
+  {
+    "id": "wrk_695de0c1_3b47",
+    "name": "gemini",
+    "role": "Worker",
+    "substrate": "Google",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  },
+  {
+    "id": "wrk_695de0c3_7a6f",
+    "name": "grok",
+    "role": "Worker",
+    "substrate": "xAI",
+    "status": "Available",
+    "endpoint": null,
+    "capabilities": [
+      "general"
+    ]
+  }
+]

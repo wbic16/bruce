@@ -1,0 +1,11 @@
+[
+  {
+    "id": "msg_695de2ad_fbb5",
+    "fromWorkerId": "system",
+    "toWorkerId": "wrk_695de0ac_b377",
+    "content": "Hello, World",
+    "taskId": null,
+    "sentAt": "2026-01-07T04:35:57.3430989Z",
+    "read": false
+  }
+]
