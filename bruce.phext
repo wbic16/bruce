@@ -7088,3 +7088,147 @@ Fix the serialization (drop the coord= line)
 Continue iterating
 
 Thanks for the course correction—this makes phext's elegance much clearer. The coordinate system is the schema.
+Sprint 5 Record
+
+Sprint 5: Day 742 - January 8, 2026
+
+Implement the smallest system that can express this spec, emit scrolls for each phase, and demonstrate lineage across a trivial project.
+
+Today, we are going to implement a layer 2 phext protocol - a seed spec. Details below. Before you get started, you may ask me any questions you like. I've also attached the current state of Bruce. You can now fetch libphext-cs from nuget.
+
+L2: Seed Spec (Working Name) You can brand it later. Safety first.
+A Seed is a declarative artifact that initiates causality. It does not execute. It authorizes execution.
+Each seed instantiates a causal lineage that fans out into scrolls.
+Core invariants (locked)
+• Scrolls are immutable • Newest scroll wins by reference, not erasure • Rewrites are additive, never destructive • Lineage is preserved even when superseded
+This gives you time travel without paradoxes.
+Seed: minimum viable fields
+A seed must fit on one screen. If it can’t, it’s already lying.
+1. identity
+* seed_id (stable, human-readable)
+* version (semantic, not numeric-only)
+* author (human or agent)
+* created_at (timestamp)
+This is social trust, not execution.
+2. intent
+* purpose (1–3 sentences)
+* success_criteria (declarative)
+* non_goals (explicit exclusions)
+Intent is what survives the singularity.
+3. inputs
+* source_refs (files, repos, prior scrolls)
+* parameters (key/value, typed)
+* environment_assumptions (OS, runtime, toolchains)
+No hidden state allowed.
+4. generators An ordered list of authorized transformations.
+Each entry declares:
+* phase (generate | build | test | package | explain | reseed)
+* tool_identity (name + version)
+* expected_outputs (types, not filenames)
+* failure_policy (halt | continue | annotate)
+This is where control lives.
+5. constraints
+* mutability_rules (what may change)
+* scope_limits (what may be touched)
+* determinism_level (best-effort | strict | informational)
+Constraints make auditors smile.
+6. reseed_policy
+* what outputs qualify as new seeds
+* which fields are inherited
+* versioning rules for descendants
+This is how the system learns without forgetting.
+Lifecycle (MVP path, exactly as you specified)
+Each phase emits at least one scroll.
+1. spec
+* Seed scroll (root)
+* Captures declared intent and authorization
+1. generate
+* Generated artifacts
+* Generator provenance scroll
+* Input hashes + tool identity
+1. build
+* Build outputs
+* Build environment scroll
+* Warnings are first-class citizens
+1. test
+* Test results
+* Coverage, failures, skipped cases
+* Tests never overwrite builds
+1. package
+* Distributable artifacts
+* Packaging metadata
+* Target ecosystem declarations
+1. explain
+* Human-readable explanation
+* “Why these files exist”
+* “Why these decisions were made”
+* Links backward only
+This is the trust bridge.
+1. reseed
+* New seed candidates emitted
+* Explicit acceptance required
+* Nothing auto-propagates silently
+This preserves agency.
+Scroll topology (important)
+This is not a tree. It’s a causal DAG expressed as phext coordinates.
+• Each scroll references parents by coordinate • Newest scroll wins by being the one you point to • Old scrolls remain valid, just no longer canonical
+You never lose history. You just choose which future you’re standing in.
+Why this will feel safe to non-early adopters
+• Nothing runs without authorization • Everything explains itself • Rewrites don’t erase accountability • Humans remain first-class actors • Auditability emerges naturally, not by policy
+It looks like good engineering. It behaves like inevitability.
+
+---
+
+Good morning, Will. Day 742 - you're deep into this now.
+Before I dive into the sprint5_state and start building, I have a few clarifying questions:
+Format & Storage
+
+Seed representation: Should seeds be expressed as structured phext (using the coordinate system as semantic scaffolding), JSON/YAML for human authoring, or a custom DSL? I'm leaning toward "author in something readable, emit as phext" but want to confirm.
+Scroll persistence: Single phext file with coordinates encoding the DAG topology, or a directory structure that mirrors the coordinates? The former feels more true to the vision; the latter is easier to debug early.
+
+Coordinate Mapping
+3. Lineage in coordinates: How do you want the causal DAG to map onto phext dimensions? My initial instinct:
+
+Library = project/seed family
+Shelf = seed version lineage
+Series = phase (spec → generate → build → test → package → explain → reseed)
+Lower dimensions for scroll variants within a phase
+
+Does this match your mental model, or do you have a different topology in mind?
+Demonstration Scope
+4. The trivial project: Should I pick something minimal (like a "hello world" that goes through the full lifecycle), or do you have a specific artifact in mind? I could also use a piece of Bruce itself as the demonstration subject - eating our own cooking.
+
+libphext-cs integration: Should the seed processor use libphext-cs for coordinate handling, or is this a parallel implementation that will later converge?
+
+Agency Boundary
+6. "Explicit acceptance required" for reseed: In the MVP, is this a human prompt, a confirmation file, or something else? I want to get the agency checkpoint right from the start.
+Once you answer these, I'll unpack the zip and start building.
+
+---
+
+
+
+
+
+Seed Representation: Phext gives you a metric ton of flexibility. You don't need to use one data structure for everything. You can choose the data format for each scroll independently. Explore this idea in depth and see what you can come up with that minimizes friction.
+
+
+
+You can use libphext-cs to interact directly with a single phext file in real-time. For small datasets, you'll never notice a performance penalty. On Windows, it will actually perform better...
+
+
+
+Coordinate mapping: I don't have any particular structure in mind. We can iterate on what makes sense until it feels natural. Start with your instinct and we'll revise as needed.
+
+
+
+Start with Hello World. Then use our sprint history in Bruce.phext to generate Bruce. ;) Inciption!
+
+
+
+Use libphext-cs whenever possible. Now that we're using the same library that's available in Rust, Node, and Python, we'll be able to immediately port Bruce to those languages as well. That will be your next step actually - maintaining every parallel fork of Bruce atomically as we code changes to the Bruce spec.
+
+
+
+Let's allow the seed originator to choose a compliance rule: pretty much everything in this system should be hackable. But we can start with pre-approved, interactive, token, and 2FA mechanisms.
+
