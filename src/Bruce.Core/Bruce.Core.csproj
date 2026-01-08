@@ -5,4 +5,17 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Bruce.Core</RootNamespace>
   </PropertyGroup>
+
+  <!-- Reference to libphext-cs -->
+  <!-- Option 1: Project reference (for development) -->
+  <ItemGroup Condition="Exists('..\..\..\libphext-cs\src\Phext\Phext.csproj')">
+    <ProjectReference Include="..\..\..\libphext-cs\src\Phext\Phext.csproj" />
+  </ItemGroup>
+
+  <!-- Option 2: NuGet package (for production) - uncomment when published -->
+  <!--
+  <ItemGroup>
+    <PackageReference Include="LibPhext" Version="0.3.0" />
+  </ItemGroup>
+  -->
 </Project>

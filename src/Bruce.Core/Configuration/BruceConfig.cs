@@ -1,6 +1,17 @@
 namespace Bruce.Core.Configuration;
 
 /// <summary>
+/// Storage backend type
+/// </summary>
+public enum StoreType
+{
+    /// <summary>JSON file-based storage (default, legacy)</summary>
+    Json,
+    /// <summary>Phext coordinate-addressed storage (Sprint 4+)</summary>
+    Phext
+}
+
+/// <summary>
 /// Configuration for Bruce engine.
 /// Immutable after construction.
 /// </summary>
@@ -10,6 +21,11 @@ public sealed class BruceConfig
     /// Path where data files are stored
     /// </summary>
     public string DataPath { get; init; } = "bruce_data";
+
+    /// <summary>
+    /// Storage backend type (Json or Phext)
+    /// </summary>
+    public StoreType StoreType { get; init; } = StoreType.Phext;
 
     /// <summary>
     /// Minimum log level
@@ -57,9 +73,17 @@ public sealed class BruceConfig
     public int LockTimeoutMs { get; init; } = 5000;
 
     /// <summary>
-    /// Default configuration
+    /// Default configuration (uses Phext storage)
     /// </summary>
     public static BruceConfig Default => new();
+
+    /// <summary>
+    /// Legacy configuration (uses JSON storage)
+    /// </summary>
+    public static BruceConfig Legacy => new()
+    {
+        StoreType = StoreType.Json
+    };
 
     /// <summary>
     /// Development configuration with debug logging
@@ -78,6 +102,7 @@ public sealed class BruceConfig
     public class ConfigBuilder
     {
         private string _dataPath = "bruce_data";
+        private StoreType _storeType = StoreType.Phext;
         private LogLevel _logLevel = LogLevel.Info;
         private bool _atomicWrites = true;
         private int _maxTitleLength = 200;
@@ -91,6 +116,12 @@ public sealed class BruceConfig
         public ConfigBuilder WithDataPath(string path)
         {
             _dataPath = path;
+            return this;
+        }
+
+        public ConfigBuilder WithStoreType(StoreType storeType)
+        {
+            _storeType = storeType;
             return this;
         }
 
@@ -109,6 +140,7 @@ public sealed class BruceConfig
         public BruceConfig Build() => new()
         {
             DataPath = _dataPath,
+            StoreType = _storeType,
             LogLevel = _logLevel,
             AtomicWrites = _atomicWrites,
             MaxTitleLength = _maxTitleLength,
