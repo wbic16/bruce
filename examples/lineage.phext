@@ -1,0 +1,128 @@
+scroll_id: hello-world-spec-1.0.0
+phase: Spec
+coord: 2.1.1/1.1.1/1.1.1
+emitted_at: 2026-01-09T04:26:02.8997547Z
+parents: none
+hash: 64c05ed75b9849fb
+---
+seed_id: hello-world
+version: 1.0.0
+author: Claude (Agent)
+purpose: Demonstrate phext-native seed lifecycle with coordinate-addressed scrolls.
+
+success_criteria:
+  - All scrolls live in ONE phext file
+  - Each scroll addressable by coordinate
+  - Plain text serialization
+  - Lineage emerges from coordinate topology
+
+non_goals:
+  - Multiple output files
+  - JSON blobs
+
+generators:
+  - phase: Generate
+    tool: seed-processor v5.0.0
+    outputs: source_code
+    on_failure: Halt
+  - phase: Build
+    tool: dotnet v8.0.0
+    outputs: assembly
+    on_failure: Annotate
+  - phase: Test
+    tool: xunit v2.6.0
+    outputs: test_results
+    on_failure: Continue
+scroll_id: gen-78929165
+phase: Generate
+coord: 2.1.2/1.1.1/1.1.1
+emitted_at: 2026-01-09T04:26:02.9568409Z
+parents: 2.1.1/1.1.1/1.1.1
+hash: f428f2f6f37e840a
+---
+tool: seed-processor v5.0.0
+duration: 92ms
+
+input_hashes:
+  seed.yaml: 5e33d04ccbd83d46
+
+artifacts:
+  - source_code (source_code) [4c9fcc88e4417cc7]
+scroll_id: build-65b3d675
+phase: Build
+coord: 2.1.3/1.1.1/1.1.1
+emitted_at: 2026-01-09T04:26:02.9743833Z
+parents: 2.1.2/1.1.1/1.1.1
+hash: 00f8b1e286c09af9
+---
+environment: Unix 4.4.0.0 / X64
+exit_code: 0
+duration: 105ms
+
+toolchains:
+  dotnet: 8.0
+
+outputs:
+  - bin/output.dll [0343b13708cd52d3] (4096 bytes)
+scroll_id: test-8ddd2fa2
+phase: Test
+coord: 2.1.4/1.1.1/1.1.1
+emitted_at: 2026-01-09T04:26:02.9794074Z
+parents: 2.1.3/1.1.1/1.1.1
+hash: c3fa8d147c115825
+---
+framework: xunit v2.6.0
+duration: 109ms
+summary: 2/2 passed, 0 failed, 0 skipped
+
+results:
+  [PASS] Seed_ShouldParse
+  [PASS] Lineage_ShouldEmit
+scroll_id: explain-2f9bf532
+phase: Explain
+coord: 2.1.6/1.1.1/1.1.1
+emitted_at: 2026-01-09T04:26:02.9837754Z
+parents: 2.1.1/1.1.1/1.1.1, 2.1.2/1.1.1/1.1.1, 2.1.3/1.1.1/1.1.1, 2.1.4/1.1.1/1.1.1
+hash: 554afbe62a7bd3c0
+---
+# hello-world v1.0.0
+
+## Purpose
+Demonstrate phext-native seed lifecycle with coordinate-addressed scrolls.
+
+## Why These Scrolls Exist
+
+- All scrolls live in ONE phext file
+- Each scroll addressable by coordinate
+- Plain text serialization
+- Lineage emerges from coordinate topology
+
+## Lineage
+
+- **Spec** at `2.1.1/1.1.1/1.1.1` [64c05ed75b9849fb]
+- **Generate** at `2.1.2/1.1.1/1.1.1` [f428f2f6f37e840a]
+- **Build** at `2.1.3/1.1.1/1.1.1` [00f8b1e286c09af9]
+- **Test** at `2.1.4/1.1.1/1.1.1` [c3fa8d147c115825]
+
+## Non-Goals
+- Multiple output files
+- JSON blobs
+
+---
+*Links backward only. This is the trust bridge.*
+scroll_id: reseed-36ae76f0
+phase: Reseed
+coord: 2.1.7/1.1.1/1.1.1
+emitted_at: 2026-01-09T04:26:02.9897758Z
+parents: 2.1.4/1.1.1/1.1.1
+hash: d51e6ec94058554a
+---
+trigger: lifecycle-complete
+
+candidates:
+  - seed_id: hello-world
+    version: 1.0.1
+    rationale: Generated from hello-world v1.0.0
+    changes:
+      - version: 1.0.0 → 1.0.1
+    status: [REQUIRES EXPLICIT ACCEPTANCE]
