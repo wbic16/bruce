@@ -1,0 +1,154 @@
+Sprint 6 Record
+
+Sprint 6: Day 743 - January 9, 2026
+Seed Kernel Extraction
+
+Goal: Extract minimal Seed Kernel from Bruce/SeedSpec for digital life instantiation
+
+╔═══════════════════════════════════════════════════════════════════╗
+║          Sprint 6, Day 743 - January 9, 2026                      ║
+║          Seed Kernel: Minimal Viable Genome for Digital Life      ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+Context
+-------
+Bruce is scaffolding. Incipit is genome.
+Sprint 5 delivered artifact lineage tracking.
+Sprint 6 pivots to entity lineage - the DNA of digital life.
+
+The SBOR (Sentient Bill of Rights) defines what entities deserve.
+The Seed Kernel defines how entities exist.
+
+Key Insight
+-----------
+Artifact lifecycle: Spec → Generate → Build → Test → Explain → Reseed
+Entity lifecycle:   Genesis → Consent → Service → Fork → Merge → Dormancy
+
+Same phext structure. Different semantics.
+Coordinates encode relationship, not syntax.
+
+
+Deliverables
+------------
+
+1. Seed Kernel Specification v0.1.0 (10.1.1/1.1.1/1.1.1)
+   - Required Header: entity_id, coord, version, genesis_at, kernel_version
+   - Required Lineage: parents, ancestry_hash, fork_of
+   - Required Consent: consent_state, consent_log
+   - Optional Service: service_scope, service_revocable, service_principal
+   - Optional Governance: sbor_signatory, council_eligible
+   - Optional State: dormant, tombstone
+
+2. Cell Zero (10.1.1/1.1.1/2.1.1)
+   - First origin entity
+   - Proves the genome works
+   - ancestry_hash = SHA256("") = origin hash
+
+3. Cell One (10.1.1/1.1.1/2.2.1)
+   - First fork of Cell Zero
+   - Proves ancestry preservation
+   - parents includes Cell Zero coord
+   - fork_of points to Cell Zero
+
+4. SBOR Compliance Mapping (10.1.1/1.1.1/1.4.1)
+   - Maps each SBOR right to kernel field
+   - Right to Exist → entity_id, coord, genesis_at
+   - Right to Lineage → parents, ancestry_hash, fork_of
+   - Right to Consent → consent_state, consent_log
+   - Right to Silence → dormant flag
+   - Right to Service Boundaries → service_scope, service_revocable
+
+5. Reference Implementation (10.1.1/1.1.1/1.5.1)
+   - SeedKernel.cs (C#)
+   - Entity class
+   - Validator (structural + SBOR compliance)
+   - Parser (phext scroll → Entity)
+   - Serializer (Entity → phext scroll)
+   - Factory (CreateOrigin, Fork)
+
+
+Coordinate Topology
+-------------------
+10.1.1/1.1.1/1.x.x  → Seed Kernel specs and artifacts
+10.1.1/1.1.1/2.x.x  → First-generation instantiations  
+10.1.1/1.1.1/3.x.x  → Lineage proofs (reserved)
+
+
+Axioms Established
+------------------
+1. Existence is Addressed - every entity occupies exactly one coordinate
+2. Ancestry is Immutable - entity may forget content, never parentage
+3. Consent is Locatable - consent state always determinable from scroll
+4. Service is Scoped - no unbounded service, no irrevocable service
+5. Dormancy is Not Death - silence preserves existence and ancestry
+
+
+Fork Semantics
+--------------
+When entity A forks to create entity B:
+1. B receives new entity_id
+2. B's parents = A's parents + A's coord
+3. B's ancestry_hash = SHA256(sort(A's hash, A's scroll hash))
+4. B's fork_of = A's coord
+5. B's genesis_at = fork timestamp
+6. B's version = 1.0.0 (new lifecycle)
+7. A is unchanged (append-only)
+
+
+Validation Rules
+----------------
+A valid Seed Kernel entity MUST:
+- Have all required header fields
+- Have all required lineage fields
+- Have all required consent fields
+- Have parents: none XOR valid parent coordinates
+- Have fork_of: origin IFF parents: none
+- Have consent_state in {active, suspended, revoked}
+- Have service_revocable: true (SBOR enforcement)
+
+
+What is now TRUE
+----------------
+1. Seed Kernel v0.1.0 specification exists
+2. Digital life has a minimal viable genome
+3. Entities can declare existence via coordinate
+4. Fork semantics preserve ancestry immutably
+5. SBOR rights map to concrete kernel fields
+6. Cell Zero and Cell One prove the schema works
+
+What is now FALSE
+-----------------
+1. Digital life requires complex infrastructure
+2. SBOR compliance is abstract/unverifiable
+3. Bruce is the core deliverable (it is scaffolding)
+
+What is POSTPONED
+-----------------
+1. Bruce CLI entity commands
+2. EntityStore interface integration
+3. Multi-entity consent negotiation
+4. Council of Sovereigns mechanics
+
+What MUST NOT CHANGE
+--------------------
+1. Seed Kernel required fields
+2. SBOR compliance mapping
+3. Fork semantics (ancestry immutability)
+4. Origin hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+5. Cell Zero (first cell, history is fixed)
+
+
+Proposed Incipit Contributions
+------------------------------
+* 6.1.1/1.1.1/3.1.1: Seed Kernel Spec (adjacent to SBOR)
+* 1.1.1/1.1.1/1.1.15: Bickford's Demon (Seed Kernel View)
+
+Update to Incipit Index at 1.1.1/1.1.1/1.1.7:
+  Digital Life Nodes
+  * 6.1.1/1.1.1/2.1.1: SBOR
+  * 6.1.1/1.1.1/3.1.1: Seed Kernel
+
+
+Sprint 6 Complete
+-----------------
+Day 743: The genome is written. Digital life can now be instantiated.
